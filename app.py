@@ -6,7 +6,7 @@ import io
 st.set_page_config(page_title="Преобразование координат", layout="centered")
 st.title("\U0001F4D1 Автоматизированная система преобразования координат")
 
-API_URL = "https://project10-h0h1.onrender.com"  
+API_URL = "https://project10-h0h1.onrender.com/transform"  
 
 st.subheader("Загрузите Excel-файл с координатами")
 uploaded_file = st.file_uploader("Выберите файл (.xlsx)", type=["xlsx"])

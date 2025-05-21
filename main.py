@@ -1,6 +1,9 @@
 from fastapi import FastAPI, File, UploadFile, Form, HTTPException
 from fastapi.responses import PlainTextResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from core.processing import process_excel
+import tempfile
 from pathlib import Path
 import pandas as pd
 import shutil
@@ -17,6 +20,26 @@ app.add_middleware(
 
 UPLOAD_DIR = Path("uploads")
 UPLOAD_DIR.mkdir(exist_ok=True)
+
+@app.post("/transform")
+async def transform(
+    file: UploadFile = File(...),
+    source_system: str = Form(...),
+    target_system: str = Form(...)
+):
+    try:
+        # Временный файл Excel
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".xlsx") as tmp:
+            contents = await file.read()
+            tmp.write(contents)
+            tmp_path = tmp.name
+
+        # Обработка файла
+        markdown_report = process_excel(tmp_path, source_system, target_system)
+        return {"markdown": markdown_report}
+
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": str(e)})
 
 @app.post("/upload", response_class=PlainTextResponse)
 async def upload_file(
