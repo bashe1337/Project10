@@ -6,19 +6,15 @@ import io
 st.set_page_config(page_title="Преобразование координат", layout="centered")
 st.title("\U0001F4D1 Автоматизированная система преобразования координат")
 
-# Настройки
-API_URL = "https://<your-render-backend-url>/upload"  # Заменить на реальный URL Render
+API_URL = "https://project10-h0h1.onrender.com"  
 
-# Загрузка файла
 st.subheader("Загрузите Excel-файл с координатами")
 uploaded_file = st.file_uploader("Выберите файл (.xlsx)", type=["xlsx"])
 
-# Параметры преобразования
 st.subheader("Выберите системы координат")
 source_system = st.selectbox("Исходная система", ["ГСК-2011", "WGS-84"], index=0)
 target_system = st.selectbox("Целевая система", ["WGS-84", "ГСК-2011"], index=1)
 
-# Кнопка запуска
 if st.button("Преобразовать"):
     if uploaded_file is None:
         st.error("Пожалуйста, загрузите файл.")
@@ -37,7 +33,6 @@ if st.button("Преобразовать"):
                 st.success("Преобразование завершено!")
                 st.markdown(markdown_text)
 
-                # Скачать как Markdown
                 md_bytes = markdown_text.encode("utf-8")
                 st.download_button(
                     label="Скачать отчёт в Markdown",
