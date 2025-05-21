@@ -1,6 +1,9 @@
 fastapi
 uvicorn
 pandas
+openpyxl
 sympy
-openpyxl>=3.1.2
+numpy
 python-multipart
+streamlit
+requests
