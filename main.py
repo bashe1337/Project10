@@ -5,6 +5,10 @@ import pandas as pd
 import json
 import tempfile
 from core.converter import transform_coordinates
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), 'core'))
 
 app = FastAPI()
 
