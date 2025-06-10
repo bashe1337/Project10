@@ -29,21 +29,6 @@ Xs, Ys, Zs = sp.symbols('X_s Y_s Z_s')
 m, wx, wy, wz = sp.symbols('m ω_x ω_y ω_z')
 dX, dY, dZ = sp.symbols('dX dY dZ')
 
-def create_formula_matrix():
-    to_GSK_matrix = Matrix([
-        [1, wz, -wy],
-        [-wz, 1, wx],
-        [wy, -wx, 1]
-    ])
-    
-    from_GSK_matrix = Matrix([
-        [1, -wz, wy],
-        [wz, 1, -wx],
-        [-wy, wx, 1]
-    ])
-    
-    return to_GSK_matrix, from_GSK_matrix
-
 def generate_formula_latex(matrix, symbol_X, symbol_Y, symbol_Z, m_expr, dX, dY, dZ):
     try:
         formula = Eq(
@@ -56,8 +41,7 @@ def generate_formula_latex(matrix, symbol_X, symbol_Y, symbol_Z, m_expr, dX, dY,
         return ""
 
 def create_markdown_report(start_system, end_system, start_df, transformed_df, parameters):
-    report = "# Отчет по конвертации\n\n"
-    
+
     if start_system != "ГСК-2011":
         p_start = parameters[start_system]
         wz_val = round(radians(p_start['wz']/3600)*pi/180, 10)
