@@ -5,7 +5,7 @@ import requests
 import pandas as pd
 import io
 
-BACKEND_URL = "https://project10-finish.onrender.com"
+BACKEND_URL = "https://project10-finish.onrender.com/convert"
 
 st.set_page_config(page_title="Конвертируем координаты", layout="centered")
 

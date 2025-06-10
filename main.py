@@ -26,7 +26,6 @@ app.add_middleware(
 with open("parameters.json", "r") as f:
     parameters = json.load(f)
 
-# Символы
 Xe, Ye, Ze = sp.symbols('X_e Y_e Z_e')
 Xs, Ys, Zs = sp.symbols('X_s Y_s Z_s')
 m, wx, wy, wz = sp.symbols('m ω_x ω_y ω_z')
