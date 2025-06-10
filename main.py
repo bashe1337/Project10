@@ -56,22 +56,7 @@ def generate_formula_latex(matrix, symbol_X, symbol_Y, symbol_Z, m_expr, dX, dY,
         return ""
 
 def create_markdown_report(start_system, end_system, start_df, transformed_df, parameters):
-    report = "# Отчет по преобразованию координат\n\n"
-    report += "## Общая формула по которой производились вычисления\n\n"
-    
-    to_GSK_matrix, from_GSK_matrix = create_formula_matrix()
-    
-    if start_system != "ГСК-2011":
-        report += "### Формула для перевода в систему ГСК\n"
-        formula = generate_formula_latex(to_GSK_matrix, Xs, Ys, Zs, 'm', dX, dY, dZ)
-        report += formula + "\n"
-    
-    if end_system != "ГСК-2011":
-        report += "### Формула для перевода из системы ГСК\n"
-        formula = generate_formula_latex(from_GSK_matrix, Xs, Ys, Zs, 'm', dX, dY, dZ)
-        report += formula + "\n"
-    
-    report += "## Формулы с подставленными параметрами\n\n"
+    report = "# Отчет по конвертации\n\n"
     
     if start_system != "ГСК-2011":
         p_start = parameters[start_system]
